@@ -1,4 +1,4 @@
-import { exists, existsSync, mkdirSync } from "fs";
+import { existsSync, mkdirSync } from "fs";
 import { diskStorage } from "multer";
 
 export const multerOptions = {
@@ -18,6 +18,12 @@ export const multerOptions = {
                 mkdirSync(uploadPath);
             }
             cb(null, uploadPath);
+        },
+
+        filename: (request, file, cb) => {
+            console.log(file);
+            
+            cb(null, file.originalname)
         }
     })
 }
