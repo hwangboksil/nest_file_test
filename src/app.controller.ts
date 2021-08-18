@@ -1,6 +1,7 @@
 import { Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AppService } from './app.service';
+import { multerOptions } from './lib/multerOptions';
 
 @Controller()
 export class AppController {
@@ -11,11 +12,12 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @UseInterceptors(FileInterceptor('file', multerOptions))
   @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
   uploadFile(
-    @UploadedFile() file: Express.Multer.File
-    ) {
+    @UploadedFile() file: Express.Multer.File) 
+    {
     console.log(file)
+    return 'SUCCESS'
   }
 }
