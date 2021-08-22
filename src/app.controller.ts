@@ -18,6 +18,6 @@ export class AppController {
     @UploadedFile() file: Express.Multer.File) 
     {
     console.log(file)
-    return 'SUCCESS'
+    return 'FILE_UPLOAD_SUCCESS'
   }
 }
