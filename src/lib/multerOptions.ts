@@ -3,7 +3,7 @@ import { diskStorage } from "multer";
 
 export const multerOptions = {
     fileFilter: (request, file, cb) => {
-        if (file.mimetype.match(/\.(jpg|jpeg|png|gif)$/)) {
+        if (file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
             cb(null, true);
         } else {
             cb(new Error('지원하지 않는 이미지 형식입니다.'));
